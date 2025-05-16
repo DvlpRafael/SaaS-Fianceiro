@@ -7,7 +7,7 @@ function Login({ onLogin, isAuthenticated }) {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const apiUrl = 'https://https://backend-gzri.onrender.com/api'; // Use a mesma apiUrl do App.js
+const loginUrl = 'https://backend-gzri.onrender.com/auth/login';   
 
     useEffect(() => {
         if (isAuthenticated) {

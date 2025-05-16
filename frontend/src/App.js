@@ -20,7 +20,7 @@ function App() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const apiUrl = 'http://localhost:5000/api'; // URL da API para os dados
+    const apiUrl = 'https://backend-gzri.onrender.com/api'; // URL da API para os dados
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');

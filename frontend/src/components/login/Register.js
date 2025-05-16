@@ -10,7 +10,7 @@ function Register({ isAuthenticated }) {
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
-    const apiUrl = 'https://https://backend-gzri.onrender.com/api'; 
+  const apiUrl = 'https://backend-gzri.onrender.com/auth/register'; // Para registro
 
     useEffect(() => {
         if (isAuthenticated) {
