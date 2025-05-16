@@ -12,7 +12,7 @@ function AdicionarEntrada() {
         const novaEntrada = { descricao, valor: parseFloat(valor), data, categoria };
 
         try {
-            const response = await fetch('http://localhost:5000/api/entradas', {
+            const response = await fetch('https://backend-gzri.onrender.com/api/entradas', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

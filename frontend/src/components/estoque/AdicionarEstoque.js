@@ -12,7 +12,7 @@ function AdicionarEstoque() {
         const novoItemEstoque = { nome, quantidade: parseInt(quantidade), precoVenda: parseFloat(precoVenda) };
 
         try {
-            const response = await fetch('http://localhost:5000/api/estoque', {
+            const response = await fetch('https://backend-gzri.onrender.com/api/estoque', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
