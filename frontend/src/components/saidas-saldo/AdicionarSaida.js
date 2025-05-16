@@ -12,7 +12,7 @@ function AdicionarSaida() {
         const novaSaida = { descricao, valor: parseFloat(valor), data, categoria };
 
         try {
-            const response = await fetch('https://backend-gzri.onrender.com/api/saidas', {
+            const response = await fetch('https://https://backend-gzri.onrender.com/api/saidas', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

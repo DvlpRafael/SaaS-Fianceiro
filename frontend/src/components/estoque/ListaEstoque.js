@@ -11,7 +11,7 @@ function ListaEstoque() {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('https://backend-gzri.onrender.com/api/estoque');
+            const response = await fetch('https://https://backend-gzri.onrender.com/api/estoque');
             if (response.ok) {
                 const data = await response.json();
                 setEstoque(data);
@@ -32,7 +32,7 @@ function ListaEstoque() {
     const handleDeleteItem = async (id) => {
         if (window.confirm('Tem certeza que deseja remover este item?')) {
             try {
-                const response = await fetch(`https://backend-gzri.onrender.com/api/estoque/${id}`, {
+                const response = await fetch(`https://https://backend-gzri.onrender.com/api/estoque/${id}`, {
                     method: 'DELETE',
                 });
 

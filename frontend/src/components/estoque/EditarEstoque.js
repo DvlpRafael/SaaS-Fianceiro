@@ -16,7 +16,7 @@ function EditarEstoque() {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch(`https://backend-gzri.onrender.com/api/estoque/${id}`);
+                const response = await fetch(`https:/https://backend-gzri.onrender.com/api/estoque/${id}`);
                 if (response.ok) {
                     const data = await response.json();
                     setNome(data.nome);
@@ -40,7 +40,7 @@ function EditarEstoque() {
         const itemAtualizado = { nome, quantidade: parseInt(quantidade), precoVenda: parseFloat(precoVenda) };
 
         try {
-            const response = await fetch(`https://backend-gzri.onrender.com/api/estoque/${id}`, {
+            const response = await fetch(`https://https://backend-gzri.onrender.com/api/estoque/${id}`, {
                 method: 'PUT', // Ou PATCH, dependendo da sua API
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,27 +1,32 @@
+/* src/App.css */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; /* Remover margem padrão do body */
+    margin: 0;
     background-color: #f4f6f8;
     color: #333;
-    height: 100vh; /* Garante que o body ocupe toda a altura da tela */
-    overflow: hidden; /* Impede a barra de rolagem vertical no body */
 }
 
 .app-layout {
     display: flex;
-    height: 100%; /* Ocupa toda a altura do body */
+    min-height: 100vh;
 }
+
 .main-content {
-    flex-grow: 1; /* O conteúdo principal ocupa o espaço restante */
+    flex-grow: 1;
     padding: 20px;
-    overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo principal for muito longo */
-    margin-left: 250px; /* Adiciona uma margem esquerda igual à largura da sidebar */
+    overflow-y: auto;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.sidebar-open {
+    margin-left: 250px;
 }
 
 h1 {
     color: #2c3e50;
     margin-bottom: 30px;
-    text-align: left; /* Alinha o título à esquerda no conteúdo principal */
+    text-align: left;
 }
 
 h2 {
@@ -47,13 +52,68 @@ h2 {
 }
 
 .chart-container.full-width {
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  grid-column: span 2;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    grid-column: 1 / -1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilos para listas */
+.entradas-list-container,
+.saidas-list-container,
+.estoque-list-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    min-width: 300px;
+}
 
-/* Adicione outros estilos conforme necessário */
+.entradas-list-container h2,
+.saidas-list-container h2,
+.estoque-list-container h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Estilos para ResumoFinanceiro */
+.resumo-financeiro-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.resumo-financeiro-container h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Estilos para DREDisplay */
+.dre-display-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+.dre-display-container h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Estilos para outros gráficos */
+.chart-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+.chart-container h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
