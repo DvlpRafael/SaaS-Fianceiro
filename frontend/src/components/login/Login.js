@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; 
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
 function Login({ onLogin, isAuthenticated }) {
@@ -7,7 +7,7 @@ function Login({ onLogin, isAuthenticated }) {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-const loginUrl = 'https://backend-gzri.onrender.com/auth/login';   
+    const loginUrl = 'https://backend-gzri.onrender.com/auth/login'; // URL correta para o endpoint de login
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -19,7 +19,7 @@ const loginUrl = 'https://backend-gzri.onrender.com/auth/login';
         event.preventDefault();
         setError('');
         try {
-            const response = await fetch(`${apiUrl}/auth/login`, {
+            const response = await fetch(loginUrl, { // Usando a URL definida corretamente
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
