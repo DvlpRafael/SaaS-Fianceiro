@@ -23,7 +23,7 @@ app.use('/api', estoqueRoute);
 app.use('/api/relatorios', relatoriosRoute);
 
 // String de conexão com o MongoDB Atlas
-const uri = 'mongodb+srv://dvlprafael:4t69SgqYxeqzHskc@clustersaas.kpv1uid.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSaaS'; // Certifique-se de que sua string está aqui
+const uri = 'mongodb+srv://dvlprafael:qazwsx12aA_@clustersaas.kpv1uid.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSaaS';
 
 // Conecte-se ao MongoDB
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
