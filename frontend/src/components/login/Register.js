@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Register.css';
 
@@ -10,11 +10,11 @@ function Register({ isAuthenticated }) {
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
-  const apiUrl = 'https://backend-gzri.onrender.com/auth/register'; // Para registro
+    const apiUrl = 'https://backend-gzri.onrender.com/auth/register'; // URL correta para o endpoint de registro
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/'); 
+            navigate('/');
         }
     }, [isAuthenticated, navigate]);
 
@@ -29,7 +29,7 @@ function Register({ isAuthenticated }) {
         }
 
         try {
-            const response = await fetch(`${apiUrl}/auth/register`, {
+            const response = await fetch(apiUrl, { // Usando a apiUrl diretamente
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -41,7 +41,6 @@ function Register({ isAuthenticated }) {
 
             if (response.ok) {
                 setSuccessMessage(data.message || 'Registro realizado com sucesso! Você pode fazer login agora.');
-                // Opcional: Redirecionar para a página de login após alguns segundos
                 setTimeout(() => navigate('/login'), 3000);
             } else {
                 setError(data.message || 'Falha ao registrar a conta.');
