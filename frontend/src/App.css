@@ -1,0 +1,59 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; /* Remover margem padrão do body */
+    background-color: #f4f6f8;
+    color: #333;
+    height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    overflow: hidden; /* Impede a barra de rolagem vertical no body */
+}
+
+.app-layout {
+    display: flex;
+    height: 100%; /* Ocupa toda a altura do body */
+}
+.main-content {
+    flex-grow: 1; /* O conteúdo principal ocupa o espaço restante */
+    padding: 20px;
+    overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo principal for muito longo */
+    margin-left: 250px; /* Adiciona uma margem esquerda igual à largura da sidebar */
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-align: left; /* Alinha o título à esquerda no conteúdo principal */
+}
+
+h2 {
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 5px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container.full-width {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  grid-column: span 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Adicione outros estilos conforme necessário */

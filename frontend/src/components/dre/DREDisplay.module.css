@@ -1,0 +1,95 @@
+.dre {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.periodo {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.dreTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.dreTable th, .dreTable td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.dreTable th {
+    font-weight: bold;
+}
+
+.linhaDestaque th {
+    font-weight: bold;
+}
+
+.valorPositivo {
+    color: green;
+    font-weight: bold;
+    text-align: right;
+}
+
+.valorNegativo {
+    color: red;
+    font-weight: bold;
+    text-align: right;
+}
+
+.lucroLiquido {
+    color: #27ae60;
+    font-size: 1.1em;
+    font-weight: bolder;
+    text-align: right;
+}
+
+.detalhesCategoria {
+    margin-top: 20px;
+    border-top: 1px dotted #ccc;
+    padding-top: 15px;
+}
+
+.detalhesCategoria h3 {
+    margin-top: 0;
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+.categorias {
+    display: flex;
+    gap: 30px;
+}
+
+.categorias div {
+    flex: 1;
+}
+
+.categorias h4 {
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.categorias ul {
+    list-style: none;
+    padding: 0;
+}
+
+.categorias li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dotted #eee;
+}
+
+.categorias li:last-child {
+    border-bottom: none;
+}

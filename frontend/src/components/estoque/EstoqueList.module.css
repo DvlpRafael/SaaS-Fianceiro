@@ -1,0 +1,15 @@
+.estoque table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.estoque th, .estoque td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.estoque th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}

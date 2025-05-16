@@ -1,0 +1,71 @@
+.resumo {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.metricas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.iconePositivo {
+    color: #2ecc71; /* Verde */
+}
+
+.iconeNegativo {
+    color: #e74c3c; /* Vermelho */
+}
+
+.iconeSaldo {
+    color: #3498db; /* Azul */
+}
+
+.iconeLucro {
+    color: #f39c12; /* Laranja */
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #555;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.valorPositivo {
+    color: #2ecc71;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.valorNegativo {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.lucroLiquido {
+    color: #f39c12;
+    font-weight: bolder;
+    font-size: 1.3em;
+}

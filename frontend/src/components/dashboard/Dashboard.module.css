@@ -1,0 +1,105 @@
+.dashboard-content {
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.main-chart-container {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 95%; /* Ajuste a largura conforme necessário */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.other-elements-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.horizontal-scroll-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Organiza os outros gráficos em grid */
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.section {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.section h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.entradas-list-container,
+.saidas-list-container,
+.estoque-list-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  min-width: 300px;
+}
+
+.entradas-list-container h2,
+.saidas-list-container h2,
+.estoque-list-container h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.summary-card-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.summary-card {
+  flex: 1 0 200px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  text-align: center;
+}
+
+.chart-container { /* Estilo genérico para os containers de gráfico */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.chart-container h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.chart-container.full-width {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  grid-column: span 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}

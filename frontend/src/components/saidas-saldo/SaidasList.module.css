@@ -1,0 +1,20 @@
+.saidas table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.saidas th, .saidas td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.saidas th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.valorNegativo {
+    color: red;
+    font-weight: bold;
+}

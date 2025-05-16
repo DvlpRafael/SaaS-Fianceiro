@@ -1,0 +1,20 @@
+.entradas table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.entradas th, .entradas td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.entradas th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.valorPositivo {
+    color: green;
+    font-weight: bold;
+}
