@@ -1,7 +1,61 @@
+/* frontend/src/components/saidas-saldo/EntradasSaidasChart.module.css */
 .chartContainer {
-background-color: #fff;
-padding: 20px;
-border-radius: 8px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    justify-content: space-between; /* Distribui espaço, útil com flex-grow no wrapper */
+    max-height: 380px;
+    min-height: 300px; /* Evita que fique muito pequeno */
+}
+
+.chartContainer h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.15em; /* Ajuste do tamanho do título */
+    color: #34495e;
+    text-align: center;
+    width: 100%; /* Garantir que o título não restrinja a largura do gráfico */
+}
+
+.canvasWrapper {
+    position: relative; /* Necessário para Chart.js */
+    flex-grow: 1; /* Permite que o wrapper cresça para preencher o espaço */
+    width: 100%;
+    max-width: 280px; /* Limita a largura máxima do gráfico de pizza */
+    margin: 0 auto; /* Centraliza o wrapper do canvas se ele for menor que o .chartContainer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .chartContainer {
+        padding: 15px;
+        max-height: 350px;
+        min-height: 280px;
+    }
+    .chartContainer h2 {
+        font-size: 1.1em;
+    }
+    .canvasWrapper {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chartContainer {
+        max-height: 300px; /* Altura menor para telas pequenas */
+        min-height: 250px;
+    }
+    .chartContainer h2 {
+        font-size: 1em;
+    }
+    .canvasWrapper {
+        max-width: 220px; /* Gráfico ainda menor */
+    }
 }

@@ -1,38 +1,47 @@
+/* frontend/src/components/dashboard/Sidebar.module.css */
 .sidebar {
-    background-color: #343a40; /* Cor de fundo escura */
-    color: #fff;
+    background-color: #2c3e50;
+    color: #ecf0f1;
     width: 250px;
-    height: 100vh; /* Altura total da tela */
-    position: fixed; /* Fixa na tela */
+    height: 100vh;
+    position: fixed;
     top: 0;
     left: 0;
-    padding-top: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: 20px 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza os itens horizontalmente */
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    z-index: 1050; /* Acima do conteúdo, mas abaixo do botão de menu se sobreposto */
+    overflow-y: auto; /* Para caso de muitos links */
 }
 
 .logo {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
+    padding: 0 25px;
 }
 
 .logoIcon {
-    font-size: 2em;
-    margin-right: 10px;
-    color: #f39c12; /* Cor destaque */
+    font-size: 1.8em;
+    margin-right: 12px;
+    color: #f39c12;
+    flex-shrink: 0; /* Não encolher o ícone */
 }
 
 .logo span {
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: 1.4em;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
 }
 
 .nav {
     width: 100%;
-    padding: 0 20px;
+    flex-grow: 1;
 }
 
 .nav ul {
@@ -42,24 +51,74 @@
 }
 
 .nav li {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .link {
     display: flex;
     align-items: center;
-    color: #fff;
+    color: #bdc3c7;
     text-decoration: none;
-    padding: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    padding: 12px 25px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 0.95em;
+    white-space: nowrap; /* Evitar quebra de texto do link */
 }
 
-.link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.link:hover,
+.link.active { /* A classe .active deve ser gerenciada pelo NavLink do react-router-dom */
+    background-color: #34495e;
+    color: #fff;
+}
+
+.link.active .icon, /* Cor do ícone quando o link está ativo */
+.link:hover .icon {  /* Cor do ícone no hover */
+    color: #f39c12;
 }
 
 .icon {
-    margin-right: 10px;
+    margin-right: 15px;
     font-size: 1.2em;
+    width: 20px; /* Para alinhar os ícones */
+    text-align: center;
+    transition: color 0.2s ease;
+    flex-shrink: 0; /* Não encolher o ícone */
+}
+
+/* Responsividade da Sidebar */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%); /* Esconde a sidebar por padrão */
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Esta classe será alternada via JavaScript no componente App.js */
+    .sidebar.open {
+        transform: translateX(0);
+    }
+}
+
+/* frontend/src/components/dashboard/Sidebar.module.css */
+/* ... (outros estilos) ... */
+
+.logoutContainer {
+    padding: 0 15px; /* Ajustar padding se necessário */
+    margin-top: auto; /* Empurra para o final */
+    padding-bottom: 20px; /* Espaço na parte inferior */
+}
+
+.logoutButton {
+    width: 100%;
+    justify-content: flex-start !important; /* Para sobrescrever outros estilos de .link se necessário */
+    background-color: #e74c3c !important; /* Cor de perigo para logout */
+    color: white !important;
+}
+
+.logoutButton:hover {
+    background-color: #c0392b !important;
+    opacity: 1 !important; /* Remover opacity do hover geral de .link se houver */
+}
+
+.logoutButton .icon {
+    color: white !important; /* Ícone branco para o botão de logout */
 }

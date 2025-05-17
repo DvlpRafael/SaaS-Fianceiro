@@ -1,57 +1,167 @@
+/* frontend/src/components/estoque/ListaEstoque.module.css */
 .container {
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ocupa a altura do .cardBase */
+  /* O padding geral vem do .cardBase (ou .estoqueCardFullWidth) */
 }
 
-table {
+.headerContainer {
+    display: flex;
+    justify-content: space-between; /* Título na esquerda, botão na direita */
+    align-items: center; /* Alinhar verticalmente no centro */
+    margin-bottom: 20px; /* Espaço abaixo do header e antes da tabela/mensagem */
+    flex-wrap: wrap; /* Permitir quebra se não houver espaço */
+    gap: 15px; /* Espaço entre título e botão se eles quebrarem linha */
+    flex-shrink: 0; /* Para que esta seção não seja esmagada */
+    /* O padding de 20px ao redor já é fornecido pelo .cardBase */
+}
+
+.headerContainer h1 {
+    margin: 0; /* Remover margens padrão do h1 */
+    font-size: 1.2em; /* Tamanho do título da lista, pode ser igual ao h2 do .cardBase */
+    color: #343a40;
+    font-weight: 600;
+}
+
+.tableWrapper {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden; /* Desktop: Sem rolagem X */
+    /* border: 1px solid #e9ecef; /* Opcional: se quiser uma borda interna para a área da tabela */
+    /* border-radius: 4px; */
+}
+
+.tableWrapper table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    table-layout: fixed; 
 }
 
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+.tableWrapper th, 
+.tableWrapper td {
+    padding: 10px 8px; /* Ajustado */
+    border-bottom: 1px solid #f0f0f0;
     text-align: left;
+    font-size: 0.82rem; /* Ligeiramente menor para mais conteúdo */
+    word-wrap: break-word; 
+    white-space: normal;   
+    vertical-align: middle; /* Melhor alinhamento vertical */
 }
 
-th {
-    background-color: #f8f8f8;
-    font-weight: bold;
+.tableWrapper th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #343a40;
+    text-transform: none; 
+    font-size: 0.78rem;
+    letter-spacing: 0.2px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 12px 8px;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+/* Larguras de Coluna (Desktop) */
+.tableWrapper th:nth-child(1), .tableWrapper td:nth-child(1) { width: 38%; } /* Nome */
+.tableWrapper th:nth-child(2), .tableWrapper td:nth-child(2) { width: 17%; text-align: center; white-space: nowrap;} /* Qtd */
+.tableWrapper th:nth-child(3), .tableWrapper td:nth-child(3) { width: 20%; text-align: right; white-space: nowrap;} /* Preço */
+.tableWrapper th:nth-child(4), .tableWrapper td:nth-child(4) { width: 25%; text-align: center;} /* Ações */
 
-.editButton {
-    background-color: #007bff; /* Azul Bootstrap */
+
+.tableWrapper tr:hover { background-color: #f7f7f7; }
+.actionsCell { text-align: center !important; }
+
+.editButton, .deleteButton, .addButton {
     color: white;
-    padding: 5px 10px;
+    padding: 7px 12px; /* Aumentei um pouco o padding dos botões */
     border: none;
-    border-radius: 4px;
+    border-radius: 5px; /* Borda um pouco mais arredondada */
     cursor: pointer;
     text-decoration: none;
-    font-size: 0.9em;
-    margin-right: 5px;
+    font-size: 0.8em;
+    margin: 0 4px; /* Margem horizontal apenas */
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    font-weight: 500;
+    line-height: 1.5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.editButton:hover, .deleteButton:hover, .addButton:hover { opacity: 0.9; } /* Hover mais sutil */
+
+.editButton { background-color: #007bff; }
+.deleteButton { background-color: #dc3545; }
+
+.addButton { /* Botão de adicionar no header */
+    background-color: #28a745;
+    padding: 8px 15px;
+    font-size: 0.85em;
+    /* margin-left: auto; /* Removido, justify-content: space-between no header cuida disso */
 }
 
-.editButton:hover {
-    background-color: #0056b3;
+.noItemsMessage { /* Estilo para a mensagem "Nenhum item no estoque" */
+    text-align: center;
+    padding: 40px 20px; /* Adicionar padding para centralizar melhor a mensagem */
+    color: #6c757d;
+    font-style: italic;
+    flex-grow: 1; /* Para ocupar espaço se a tabela não estiver presente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* ... seus estilos existentes ... */
 
-.deleteButton {
-    background-color: #dc3545; /* Vermelho Bootstrap */
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-    margin-left: 5px;
+/* Mobile */
+@media (max-width: 768px) {
+    .headerContainer {
+        flex-direction: column;
+        align-items: stretch; /* Botão ocupa largura total */
+        margin-bottom: 15px;
+    }
+    .headerContainer h1 {
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 1.1em !important;
+    }
+    .addButton {
+        width: 100%;
+        padding: 10px 15px; /* Botão maior em mobile */
+        font-size: 0.9em;
+    }
+    .tableWrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* border: none; */ /* A borda do cardBase já está presente */
+    }
+    .tableWrapper table {
+        min-width: 500px;
+        table-layout: auto;
+    }
+    .tableWrapper th, 
+    .tableWrapper td {
+        white-space: nowrap;
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+    /* Resetar larguras e alinhamentos de coluna em mobile */
+    .tableWrapper th:nth-child(1), .tableWrapper td:nth-child(1),
+    .tableWrapper th:nth-child(2), .tableWrapper td:nth-child(2),
+    .tableWrapper th:nth-child(3), .tableWrapper td:nth-child(3),
+    .tableWrapper th:nth-child(4), .tableWrapper td:nth-child(4) {
+        width: auto;
+        text-align: left;
+    }
 }
 
-.deleteButton:hover {
-    background-color: #c82333;
+@media (max-width: 480px) {
+    .actionsCell .editButton, .actionsCell .deleteButton {
+        display: block;
+        width: calc(100% - 10px); /* Ocupar largura com pequena margem */
+        margin: 5px auto;
+        text-align: center;
+    }
+    .editButton, .deleteButton {
+        padding: 8px 10px; /* Botões de ação um pouco maiores em mobile */
+    }
 }

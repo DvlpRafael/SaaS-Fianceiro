@@ -1,95 +1,137 @@
+/* frontend/src/components/dre/DREDisplay.module.css */
 .dre {
-    margin-bottom: 20px;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Para ocupar a altura do pai (ex: .dreCard) */
+    overflow-y: auto; /* Rolagem vertical para o conteúdo do DRE se exceder a altura do pai */
+    -webkit-overflow-scrolling: touch;
 }
 
+/* ... (estilos de .loadingContainer, .loading, .periodo como antes) ... */
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.loading {
+    color: #555;
+    font-size: 1.1em;
+}
 .periodo {
     margin-bottom: 15px;
     color: #555;
+    font-size: 0.9em;
+    flex-shrink: 0;
+}
+
+
+.dreTableWrapper {
+    /* Este wrapper não precisa mais de overflow-x para PC,
+       mas pode ser útil para mobile se o CSS global não pegar.
+       Para PC, a tabela tentará se ajustar. */
+    /* overflow-x: auto; Comentado para PC */
+    margin-bottom: 15px;
+    flex-shrink: 0; /* Não deixar encolher muito verticalmente */
 }
 
 .dreTable {
     width: 100%;
+    /* min-width: 500px; Removido para PC, a tabela tentará se ajustar */
     border-collapse: collapse;
-    margin-bottom: 20px;
+    table-layout: fixed; /* Ajuda a controlar larguras de coluna e quebra de texto */
 }
 
 .dreTable th, .dreTable td {
-    padding: 8px;
-    border-bottom: 1px solid #eee;
+    padding: 10px 8px; /* Padding um pouco menor para ajudar no encaixe */
+    border-bottom: 1px solid #f0f0f0;
     text-align: left;
+    font-size: 0.9em;
+    vertical-align: middle;
+    word-wrap: break-word; /* Permitir quebra de palavras longas */
 }
 
 .dreTable th {
-    font-weight: bold;
+    font-weight: 600;
+    background-color: #f9f9f9;
+    /* position: sticky; top: 0;  Pode não ser ideal sem rolagem vertical no wrapper */
+    z-index: 1;
+    white-space: normal; /* Permitir quebra de linha no cabeçalho */
 }
 
-.linhaDestaque th {
-    font-weight: bold;
+.dreTable td:nth-child(1) { /* Coluna de Descrição */
+    width: 60%; /* Tentar dar mais espaço para a descrição */
+    white-space: normal;
 }
 
-.valorPositivo {
-    color: green;
-    font-weight: bold;
+.dreTable td:nth-child(2) { /* Coluna de Valores */
+    width: 40%; /* Espaço para valores */
     text-align: right;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    white-space: nowrap; /* Valores geralmente não quebram */
 }
 
-.valorNegativo {
-    color: red;
-    font-weight: bold;
-    text-align: right;
-}
+/* ... (estilos .linhaDestaque, .valorPositivo, .valorNegativo, .lucroLiquido como antes) ... */
+.linhaDestaque th, .linhaDestaque td { font-weight: bold; }
+.linhaDestaque td { color: #2c3e50; background-color: #eaf2f8; }
+.valorPositivo { color: #28a745 !important; font-weight: 500; }
+.valorNegativo { color: #dc3545 !important; font-weight: 500; }
+.lucroLiquido { color: #17a2b8 !important; font-size: 1.05em; font-weight: bold; }
 
-.lucroLiquido {
-    color: #27ae60;
-    font-size: 1.1em;
-    font-weight: bolder;
-    text-align: right;
-}
 
 .detalhesCategoria {
     margin-top: 20px;
-    border-top: 1px dotted #ccc;
     padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+    flex-shrink: 0;
 }
 
-.detalhesCategoria h3 {
-    margin-top: 0;
-    color: #34495e;
-    margin-bottom: 10px;
+/* ... (estilos .detalhesCategoria h3, .categorias, .categorias div h4, .categorias ul, .categorias li como antes) ... */
+.detalhesCategoria h3 { margin-top: 0; color: #34495e; margin-bottom: 12px; font-size: 1.05em; font-weight: 600; }
+.categorias { display: grid; grid-template-columns: 1fr; gap: 15px; }
+.categorias div h4 { color: #495057; margin-top: 0; margin-bottom: 8px; font-size: 0.95em; font-weight: 600; border-bottom: 1px solid #f0f0f0; padding-bottom: 6px; }
+.categorias ul { list-style: none; padding: 0; margin: 0; }
+.categorias li { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dotted #e9ecef; font-size: 0.85em; }
+.categorias li span:last-child { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; white-space: nowrap; }
+.categorias li:last-child { border-bottom: none; }
+
+
+/* Media Queries para DREDisplay */
+@media (min-width: 769px) { /* Desktop */
+    .dreTableWrapper {
+      /* overflow-x: hidden; /* Explicitamente sem rolagem X para PC */
+    }
+    .dreTable {
+      table-layout: auto; /* Pode voltar para auto se preferir que o navegador ajuste, mas 'fixed' dá mais controle */
+    }
+     .categorias {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
 }
 
-.categorias {
-    display: flex;
-    gap: 30px;
-}
 
-.categorias div {
-    flex: 1;
-}
-
-.categorias h4 {
-    color: #555;
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-.categorias ul {
-    list-style: none;
-    padding: 0;
-}
-
-.categorias li {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-    border-bottom: 1px dotted #eee;
-}
-
-.categorias li:last-child {
-    border-bottom: none;
+@media (max-width: 768px) { /* Tablet e Mobile - Rolagem Horizontal OK para a tabela */
+    .dre {
+        padding: 15px;
+    }
+    .dreTableWrapper {
+        overflow-x: auto; /* Habilitar rolagem X para a tabela em mobile */
+        -webkit-overflow-scrolling: touch;
+    }
+    .dreTable {
+        min-width: 500px; /* Garantir que haja algo para rolar se o conteúdo for largo */
+        table-layout: auto; /* Deixar o navegador lidar com colunas em mobile */
+    }
+    .dreTable th, .dreTable td {
+        font-size: 0.85em;
+        padding: 8px 6px;
+        white-space: nowrap; /* Forçar nowrap em mobile e deixar rolar */
+    }
+    .dreTable th:first-child, .dreTable td:first-child {
+        /* Se quiser quebrar a primeira coluna em mobile, ajuste aqui */
+        /* white-space: normal; word-break: break-word; min-width: 120px; */
+    }
 }

@@ -1,105 +1,169 @@
-.dashboard-content {
-  padding: 20px;
+/* frontend/src/components/dashboard/Dashboard.module.css */
+.dashboardContent {
+  padding: 20px 25px;
 }
 
-h1 {
-  margin-bottom: 20px;
-  text-align: center;
+.sectionTitle {
+  margin-top: 30px;
+  margin-bottom: 20px; /* Aumentado o espaço após o título */
+}
+.sectionTitle h2 {
+  font-size: 1.6em; /* Tamanho do título da seção */
+  color: #343a40; /* Cor mais escura para os títulos de seção */
+  border-bottom: 2px solid #dee2e6; /* Borda mais visível */
+  padding-bottom: 10px;
+  margin: 0; /* Remover margem padrão do h2 */
+  font-weight: 500;
 }
 
-.main-chart-container {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: white;
+/* Grid para os gráficos de pizza */
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px; /* Espaço após a seção de gráficos */
+}
+
+/* Grid para a seção de dados (DRE, Listas) */
+.dataSectionGrid {
+  display: grid;
+  gap: 25px;
+  /* Para desktop: DRE, Entradas, Saídas na primeira linha, Estoque na segunda */
+  /* Ajuste o minmax para o tamanho desejado dos cards na linha */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+.cardBase {
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 95%; /* Ajuste a largura conforme necessário */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.other-elements-container {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  height: 480px; 
+  max-height: 480px;
+  overflow: hidden; 
+  padding: 20px; /* Padding INTERNO para todos os cards base */
 }
 
-.horizontal-scroll-container {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding-bottom: 10px;
+.cardBase h2 { /* Títulos DENTRO dos cards (Entradas Recentes, Saídas Recentes) */
+    /* Removido padding de .cardBase h2, pois o padding já está no .cardBase */
+    margin-top: 0; 
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1.1em; /* Ajustado para um pouco menor */
+    font-weight: 600;
+    color: #495057;
+    flex-shrink: 0;
 }
 
-.charts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Organiza os outros gráficos em grid */
-  gap: 20px;
-  margin-bottom: 20px;
+.listWrapper {
+  flex-grow: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Padding foi removido daqui, pois o .cardBase já tem padding.
+     Se o .listWrapper precisar de padding extra, adicione aqui. */
 }
 
-.section {
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+.dreCard {
+  composes: cardBase;
+  padding: 0; /* DREDisplay.module.css cuidará do padding interno do DRE */
 }
 
-.section h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
+.estoqueCardFullWidth {
+  composes: cardBase; /* Garante que o card de estoque tenha o padding base de 20px */
+  grid-column: 1 / -1; 
+  height: auto; 
+  max-height: 500px;
+  /* O padding: 20px será herdado de .cardBase */
 }
 
-.entradas-list-container,
-.saidas-list-container,
-.estoque-list-container {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  min-width: 300px;
+/* ... (restante das media queries) ... */
+@media (max-width: 768px) {
+  /* ... */
+  .cardBase, .dreCard, .estoqueCardFullWidth {
+    height: auto;
+    max-height: 450px; 
+    padding: 15px; /* Padding reduzido para mobile nos cards */
+  }
+  .cardBase h2 {
+    font-size: 1.05em;
+    margin: 0 0 10px 0; /* Ajustar margens do h2 em mobile */
+  }
+  .listWrapper {
+    /* padding: 0 0 15px 0; /* Padding para conteúdo do wrapper em mobile, se necessário */
+  }
 }
 
-.entradas-list-container h2,
-.saidas-list-container h2,
-.estoque-list-container h2 {
-  margin-top: 0;
-  margin-bottom: 10px;
+.estoqueCardFullWidth {
+  composes: cardBase;
+  /* Fazer o card de estoque ocupar toda a largura da linha no dataSectionGrid */
+  grid-column: 1 / -1; 
+  height: auto; /* Permitir que a altura seja definida pelo conteúdo, com um max-height */
+  max-height: 500px; /* Ou um valor que faça sentido para a lista de estoque */
 }
 
-.summary-card-container {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+/* Placeholder para alinhar o grid de gráficos se tiver apenas 2 */
+.placeholderCard {
+  display: none; /* Escondido por padrão */
 }
 
-.summary-card {
-  flex: 1 0 200px;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: white;
-  text-align: center;
+
+/* Media Queries */
+@media (min-width: 1024px) { /* Desktop - Layout de 2 ou 3 colunas para gráficos e dados */
+  .chartsGrid {
+    /* Se quiser forçar 2 ou 3 colunas para os gráficos de pizza */
+    /* grid-template-columns: repeat(2, 1fr); */ 
+  }
+  .dataSectionGrid {
+     /* Forçar 3 colunas para DRE, Entradas, Saídas e o Estoque abaixo */
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .estoqueCardFullWidth {
+    grid-column: 1 / -1; /* Garante que o estoque ocupe a linha inteira */
+  }
 }
 
-.chart-container { /* Estilo genérico para os containers de gráfico */
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 15px;
+@media (max-width: 1023px) and (min-width: 769px) { /* Tablets em paisagem ou telas médias */
+  .chartsGrid {
+    grid-template-columns: 1fr 1fr; /* Dois gráficos de pizza por linha */
+  }
+   .placeholderCard { /* Mostrar placeholder se houver 2 gráficos para manter o grid de 2 colunas */
+    display: block;
+    visibility: hidden; /* Ocupa espaço mas não é visível */
+  }
+  .dataSectionGrid {
+     grid-template-columns: 1fr 1fr; /* Dois cards de dados por linha */
+  }
+  .dreCard {
+    grid-column: span 2; /* DRE ocupa a largura toda nesta visualização */
+  }
+  .estoqueCardFullWidth {
+    grid-column: span 2; /* Estoque ocupa a largura toda */
+  }
 }
 
-.chart-container h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
-}
 
-.chart-container.full-width {
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  grid-column: span 2;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+@media (max-width: 768px) { /* Mobile e Tablets em retrato */
+  .dashboardContent {
+    padding: 15px;
+  }
+  .sectionTitle h2 {
+    font-size: 1.3em;
+  }
+  .chartsGrid, .dataSectionGrid {
+    grid-template-columns: 1fr; /* Uma coluna */
+    gap: 20px;
+  }
+  .cardBase, .dreCard, .estoqueCardFullWidth {
+    height: auto; 
+    max-height: 450px; 
+    grid-column: auto; /* Resetar span de coluna */
+  }
+   .cardBase h2 {
+    font-size: 1.05em;
+    margin: 15px 15px 10px 15px;
+  }
+  .listWrapper {
+    padding: 0 15px 15px 15px;
+  }
 }

@@ -1,15 +1,104 @@
-.estoque table {
+/* frontend/src/components/saidas-saldo/SaidasList.module.css */
+.listContentWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    overflow: hidden;
+}
+
+.tableWrapper {
+    flex-grow: 1;
+    overflow-y: auto; 
+    overflow-x: hidden; /* SEM rolagem X para Desktop */
+}
+
+.tableWrapper table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed; /* Desktop: Força a tabela a obedecer as larguras das colunas */
 }
 
-.estoque th, .estoque td {
-    padding: 8px;
-    border-bottom: 1px solid #eee;
+.tableWrapper th, 
+.tableWrapper td {
+    padding: 8px 6px; /* Padding menor para caber mais conteúdo */
+    border-bottom: 1px solid #f0f0f0; /* Borda mais suave */
     text-align: left;
+    font-size: 0.8rem; /* Fonte menor para caber e permitir quebra */
+    word-wrap: break-word; 
+    white-space: normal;   
+    vertical-align: top; 
 }
 
-.estoque th {
-    background-color: #f9f9f9;
-    font-weight: bold;
+.tableWrapper th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #343a40; /* Cabeçalho um pouco mais escuro */
+    text-transform: none; /* Sem uppercase para economizar espaço */
+    font-size: 0.78rem; /* Fonte do cabeçalho ainda menor */
+    letter-spacing: 0.2px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 10px 6px; /* Padding vertical maior no cabeçalho */
+}
+
+/* Distribuição de Largura (Desktop) - AJUSTE ESTAS PORCENTAGENS! */
+.tableWrapper th:nth-child(1), /* Descrição */
+.tableWrapper td:nth-child(1) {
+    width: 40%; 
+}
+
+.tableWrapper th:nth-child(2), /* Valor */
+.tableWrapper td:nth-child(2) {
+    width: 25%; /* Aumentar um pouco para o valor */
+    text-align: right; 
+    white-space: nowrap; /* Valor não quebra */
+}
+
+.tableWrapper th:nth-child(3), /* Data */
+.tableWrapper td:nth-child(3) {
+    width: 15%;
+    text-align: center; 
+    white-space: nowrap;
+}
+
+.tableWrapper th:nth-child(4), /* Categoria */
+.tableWrapper td:nth-child(4) {
+    width: 20%;
+}
+
+.tableWrapper tr:hover {
+    background-color: #f7f7f7; /* Hover bem sutil */
+}
+
+.valorNegativo {
+    color: #e74c3c !important; /* Vermelho mais vivo */
+    font-weight: 500;
+}
+
+/* Mobile - habilitar rolagem X para a tabela */
+@media (max-width: 768px) {
+    .tableWrapper {
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch;
+        border: none; /* Remover borda do wrapper em mobile se o card já tiver */
+    }
+    .tableWrapper table {
+        min-width: 480px; 
+        table-layout: auto; 
+    }
+    .tableWrapper th, 
+    .tableWrapper td {
+        white-space: nowrap; 
+        font-size: 0.8rem;
+        padding: 8px 10px;
+        vertical-align: middle;
+    }
+    .tableWrapper th:nth-child(1), .tableWrapper td:nth-child(1),
+    .tableWrapper th:nth-child(2), .tableWrapper td:nth-child(2),
+    .tableWrapper th:nth-child(3), .tableWrapper td:nth-child(3),
+    .tableWrapper th:nth-child(4), .tableWrapper td:nth-child(4) {
+        width: auto;
+        text-align: left; 
+    }
 }

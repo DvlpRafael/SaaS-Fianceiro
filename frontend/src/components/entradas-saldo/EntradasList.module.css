@@ -1,20 +1,103 @@
-.entradas table {
+/* frontend/src/components/saidas-saldo/SaidasList.module.css */
+.listContentWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    overflow: hidden; /* O tableWrapper interno cuidará da rolagem */
+}
+
+.tableWrapper {
+    flex-grow: 1; /* Ocupa o espaço vertical disponível no card */
+    overflow-y: auto; /* Rolagem vertical para a lista de itens da tabela */
+    /* Para Desktop: Sem rolagem horizontal no wrapper da tabela. A tabela se ajustará. */
+    overflow-x: hidden; 
+}
+
+.tableWrapper table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed; /* MUITO IMPORTANTE para controlar quebra de linha e larguras */
 }
 
-.entradas th, .entradas td {
-    padding: 8px;
-    border-bottom: 1px solid #eee;
+.tableWrapper th, 
+.tableWrapper td {
+    padding: 10px 8px; /* Padding um pouco menor para caber mais texto */
+    border-bottom: 1px solid #e9ecef;
     text-align: left;
+    font-size: 0.85rem;
+    word-wrap: break-word; /* Permitir quebra de palavras longas */
+    white-space: normal;   /* Permitir quebra de linha */
+    vertical-align: middle; /* Alinhar verticalmente no meio da célula */
 }
 
-.entradas th {
-    background-color: #f9f9f9;
-    font-weight: bold;
+.tableWrapper th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #212529;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    position: sticky; /* Cabeçalho fixo durante a rolagem vertical da tabela */
+    top: 0;
+    z-index: 1;
 }
 
-.valorPositivo {
-    color: green;
-    font-weight: bold;
+/* Distribuição de Largura para as Colunas (Desktop) - Ajuste conforme necessário */
+.tableWrapper th:nth-child(1), /* Descrição */
+.tableWrapper td:nth-child(1) {
+    width: 40%; /* Mais espaço para descrição */
+}
+
+.tableWrapper th:nth-child(2), /* Valor */
+.tableWrapper td:nth-child(2) {
+    width: 20%;
+    text-align: right; /* Alinhar valores à direita */
+    white-space: nowrap; /* Valores geralmente não quebram */
+}
+
+.tableWrapper th:nth-child(3), /* Data */
+.tableWrapper td:nth-child(3) {
+    width: 20%;
+    text-align: center; /* Centralizar data */
+    white-space: nowrap;
+}
+
+.tableWrapper th:nth-child(4), /* Categoria */
+.tableWrapper td:nth-child(4) {
+    width: 20%;
+}
+
+.tableWrapper tr:hover {
+    background-color: #f1f3f5;
+}
+
+.valorNegativo { /* Aplicado à célula <td> */
+    color: #dc3545 !important;
+    font-weight: 500;
+}
+
+/* Mobile - habilitar rolagem X para a tabela se o conteúdo ainda for muito largo */
+@media (max-width: 768px) {
+    .tableWrapper {
+        overflow-x: auto; /* Habilitar rolagem X SOMENTE em mobile */
+        -webkit-overflow-scrolling: touch;
+    }
+    .tableWrapper table {
+        min-width: 450px; /* Forçar largura mínima para ter o que rolar em mobile */
+        table-layout: auto; /* Deixar o navegador decidir em mobile */
+    }
+    .tableWrapper th, 
+    .tableWrapper td {
+        white-space: nowrap; /* Em mobile, melhor não quebrar e sim rolar */
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+    /* Remover larguras fixas de coluna em mobile para a tabela fluir melhor com scroll */
+    .tableWrapper th:nth-child(1), .tableWrapper td:nth-child(1),
+    .tableWrapper th:nth-child(2), .tableWrapper td:nth-child(2),
+    .tableWrapper th:nth-child(3), .tableWrapper td:nth-child(3),
+    .tableWrapper th:nth-child(4), .tableWrapper td:nth-child(4) {
+        width: auto;
+        text-align: left; /* Alinhar tudo à esquerda em mobile para consistência */
+    }
 }
