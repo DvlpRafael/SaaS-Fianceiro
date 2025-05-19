@@ -7,7 +7,7 @@
 
 .main-content {
     flex-grow: 1;
-    padding: 25px;
+    padding: 0px;
     overflow-y: auto;
     margin-left: 250px; /* Default para quando a sidebar está visível e fixa */
     transition: margin-left 0.3s ease-in-out;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './EditarEstoque.module.css';
+import { apiUrl } from '../../config'; // Import apiUrl
 
 function EditarEstoque() {
     const { id } = useParams();
@@ -16,7 +17,8 @@ function EditarEstoque() {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch(`https:/https://backend-gzri.onrender.com/api/estoque/${id}`);
+                // Corrected URL using apiUrl
+                const response = await fetch(`${apiUrl}/estoque/${id}`);
                 if (response.ok) {
                     const data = await response.json();
                     setNome(data.nome);
@@ -40,10 +42,13 @@ function EditarEstoque() {
         const itemAtualizado = { nome, quantidade: parseInt(quantidade), precoVenda: parseFloat(precoVenda) };
 
         try {
-            const response = await fetch(`https://https://backend-gzri.onrender.com/api/estoque/${id}`, {
+            // Corrected URL using apiUrl
+            const response = await fetch(`${apiUrl}/estoque/${id}`, {
                 method: 'PUT', // Ou PATCH, dependendo da sua API
                 headers: {
                     'Content-Type': 'application/json',
+                     // Ensure you're including the auth token if your API requires it
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
                 },
                 body: JSON.stringify(itemAtualizado),
             });
@@ -52,10 +57,13 @@ function EditarEstoque() {
                 console.log('Item do estoque atualizado com sucesso!');
                 navigate('/estoque'); // Redirecionar para a lista de estoque após a edição
             } else {
-                console.error('Erro ao atualizar o item do estoque:', response.status);
+                const errorData = await response.json(); // Try to get error message from API
+                console.error('Erro ao atualizar o item do estoque:', response.status, errorData.message);
+                setError(errorData.message || `Erro ao atualizar o item: ${response.statusText}`);
             }
         } catch (error) {
             console.error('Erro ao enviar dados:', error);
+            setError('Falha na comunicação com o servidor ao atualizar o item.');
         }
     };
 

@@ -1,0 +1,541 @@
+/* frontend/src/components/home/HomePage.module.css */
+/* Paleta de Cores FiDash:
+    --fidash-black: #1f1f20;
+    --fidash-blue-dark: #2b4c7e;
+    --fidash-blue-medium: #567ebb;
+    --fidash-gray-blue: #606d80;
+    --fidash-gray-light: #dce0e6;
+    --fidash-white: #ffffff;
+*/
+
+.homePage {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f6f8;
+    color: #1f1f20;
+    line-height: 1.6;
+}
+
+/* Hero Section */
+.heroSection {
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 75vh;
+    height: 75vh;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
+.heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(43, 76, 126, 0.65);
+    z-index: 1;
+}
+
+.heroContent {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding-top: 20px;
+}
+
+.heroTitle, .heroSubtitle, .heroButtons {
+    opacity: 0; /* Para animação de entrada */
+    transform: translateY(20px); /* Para animação de entrada */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.heroTitle.visible, .heroSubtitle.visible, .heroButtons.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.heroSubtitle.visible {
+    transition-delay: 0.2s; /* Pequeno delay para o subtítulo */
+}
+.heroButtons.visible {
+    transition-delay: 0.4s; /* Pequeno delay para os botões */
+}
+
+
+.heroTitle {
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.heroSubtitle {
+    font-size: 1.15em;
+    margin-bottom: 35px;
+    line-height: 1.7;
+    color: #dce0e6;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heroButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.heroButton {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-weight: 600;
+    min-width: 220px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.heroButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.primaryButton {
+    background-color: #567ebb;
+    color: #fff;
+}
+.primaryButton:hover {
+    background-color: #2b4c7e;
+}
+
+.secondaryButton {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #dce0e6;
+}
+.secondaryButton:hover {
+    background-color: #dce0e6;
+    color: #2b4c7e;
+    border-color: #dce0e6;
+}
+
+.dashboardButton {
+    background-color: #1abc9c;
+    color: white;
+}
+.dashboardButton:hover {
+    background-color: #16a085;
+}
+
+/* Section Globals */
+.homePage section {
+    padding: 70px 20px;
+    text-align: center;
+}
+.sectionTitle, .sectionSubtitle, .featureCard, .planCard, .testimonialCard { /* Agrupado para animação */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.sectionTitle.visible, .sectionSubtitle.visible, .featureCard.visible, .planCard.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Aplicando delays diferentes para um efeito escalonado */
+.sectionSubtitle.visible { transition-delay: 0.15s; }
+.featuresGrid > .featureCard.visible,
+.plansGrid > .planCard.visible,
+.testimonialsGrid > .testimonialCard.visible {
+    /* O delay pode ser aplicado individualmente no JS se precisar de escalonamento dentro do grid */
+}
+
+
+.sectionTitle {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    color: #1f1f20;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 15px;
+    /* opacity e transform já definidos acima */
+}
+.sectionTitle::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 3px;
+    background-color: #567ebb;
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.sectionSubtitle {
+    font-size: 1.1em;
+    color: #606d80;
+    margin-bottom: 45px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+     /* opacity e transform já definidos acima */
+}
+
+/* Features Section */
+.featuresSection {
+    background-color: #fff;
+}
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto 0; /* Adicionado margin-top */
+}
+
+.featureCard {
+    background-color: #f8f9fa;
+    padding: 30px 25px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #dce0e6;
+    /* opacity e transform já definidos acima */
+    transition-property: opacity, transform, box-shadow; /* Garante que box-shadow também transicione */
+}
+.featureCard:hover {
+    transform: translateY(-5px); /* Mantém o transform do hover */
+    box-shadow: 0 8px 25px rgba(43, 76, 126, 0.1);
+}
+
+.featureIcon {
+    font-size: 2.8em;
+    color: #2b4c7e;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.featureCard h3 {
+    color: #1f1f20;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.featureCard p {
+    color: #606d80;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+/* Testimonials Section */
+.testimonialsSection {
+    background-color: #f4f6f8; /* Alternando cor de fundo */
+}
+
+.testimonialsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto 0; /* Adicionado margin-top */
+}
+.testimonialCard {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #dce0e6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    min-height: 250px; /* Importante */
+    opacity: 1 !important; 
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s, box-shadow 0.3s ease; /* Adicionado um delay */
+}
+
+.testimonialCard.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonialCard:hover {
+    transform: translateY(-5px) scale(1.01); /* Mantém o transform do hover */
+    box-shadow: 0 8px 25px rgba(43, 76, 126, 0.1);
+}
+
+.testimonialStars {
+    margin-bottom: 15px;
+    color: #ffc107; /* Amarelo para estrelas */
+    font-size: 1.2em; /* Tamanho das estrelas */
+}
+
+.starFilled {
+    /* A cor é herdada de .testimonialStars */
+    margin-right: 2px;
+}
+
+.starEmpty {
+    color: #e0e0e0; /* Cor para estrelas vazias, um pouco mais escura que o fundo */
+    margin-right: 2px;
+}
+
+.testimonialQuote {
+    font-size: 1em;
+    color: #1f1f20;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    position: relative;
+    padding-left: 10px; /* Espaço para as aspas */
+}
+
+.testimonialQuote::before {
+    content: '“';
+    font-size: 2.5em;
+    color: #567ebb;
+    position: absolute;
+    left: -15px;
+    top: -10px;
+    font-family: Georgia, serif;
+}
+
+.testimonialAuthor {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #dce0e6;
+}
+
+.testimonialAvatar {
+    font-size: 2.8em;
+    color: #606d80;
+    margin-right: 15px;
+}
+
+.testimonialAuthor div {
+    display: flex;
+    flex-direction: column;
+}
+
+.authorName {
+    font-weight: 600;
+    color: #2b4c7e;
+    font-size: 1em;
+    margin-bottom: 2px;
+}
+
+.authorTitle {
+    font-size: 0.85em;
+    color: #606d80;
+}
+
+/* Plans Section */
+.plansSection {
+    background-color: #fff; /* Alternando cor de fundo */
+}
+
+.plansGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 40px auto 0; /* Adicionado margin-top */
+    align-items: stretch;
+}
+
+.planCard {
+    background-color: #f8f9fa; /* Fundo dos cards de plano */
+    padding: 35px 30px;
+    border-radius: 12px;
+    border: 1px solid #dce0e6;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* opacity e transform já definidos acima */
+    transition-property: opacity, transform, box-shadow;
+}
+.planCard:hover {
+    transform: translateY(-8px) scale(1.02); /* Mantém o transform do hover */
+    box-shadow: 0 10px 30px rgba(43, 76, 126, 0.12);
+}
+
+.popularPlan {
+    border: 2px solid #2b4c7e;
+    box-shadow: 0 6px 20px rgba(43, 76, 126, 0.15);
+    transform: scale(1.03); /* Reduzi um pouco o scale inicial do popular */
+}
+.popularPlan.visible { /* Garante que a animação de entrada também aplique o scale */
+    opacity: 1;
+    transform: translateY(0) scale(1.03);
+}
+.popularPlan:hover {
+    transform: translateY(-8px) scale(1.06); /* Aumenta um pouco mais no hover */
+}
+
+.popularBadge {
+    background-color: #567ebb;
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 20px;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.planCard h3 {
+    color: #2b4c7e;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    font-weight: 600;
+}
+
+.price {
+    font-size: 2.5em;
+    color: #1f1f20;
+    margin-bottom: 25px;
+    font-weight: 700;
+    line-height: 1;
+}
+.priceDecimal {
+    font-size: 0.6em;
+    font-weight: 600;
+    vertical-align: super;
+}
+.pricePeriod {
+    font-size: 0.5em;
+    font-weight: 500;
+    color: #606d80;
+    display: block;
+    margin-top: 2px;
+}
+
+.planCard ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.planCard ul li {
+    margin-bottom: 12px;
+    color: #606d80;
+    font-size: 0.95em;
+    padding-left: 30px;
+    position: relative;
+    line-height: 1.5;
+}
+.planCard ul li::before {
+    content: '✓';
+    color: #567ebb;
+    position: absolute;
+    left: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.planButton {
+    background-color: #2b4c7e;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+    margin-top: auto;
+    display: inline-block;
+}
+.planButton:hover {
+    background-color: #1f1f20;
+    transform: translateY(-2px);
+}
+.popularButton {
+    background-color: #567ebb;
+}
+.popularButton:hover {
+    background-color: #2b4c7e;
+}
+
+/* About Section */
+.aboutSection {
+    background-color: #f4f6f8; /* Cor de fundo geral */
+}
+
+/* Footer */
+.homeFooter {
+    background-color: #2b4c7e;
+    color: #dce0e6;
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: auto;
+}
+
+.homeFooter p {
+    font-size: 0.9em;
+    margin: 0;
+}
+
+/* Media Queries (mantidas da resposta anterior, podem precisar de ajustes finos) */
+@media (max-width: 960px) {
+    .heroTitle { font-size: 2.4em; }
+    .heroSubtitle { font-size: 1.1em; }
+    .sectionTitle { font-size: 2em; }
+    .featuresGrid, .plansGrid, .testimonialsGrid { grid-template-columns: 1fr; }
+    .popularPlan, .popularPlan.visible { transform: scale(1) translateY(0); } /* Reset scale no mobile */
+    .popularPlan:hover { transform: translateY(-5px) scale(1.02); }
+}
+
+@media (max-width: 768px) {
+    .heroSection { min-height: 70vh; height: 70vh; padding-top: 80px; }
+    .heroTitle { font-size: 2em; }
+    .heroSubtitle { font-size: 1em; }
+    .heroButton { padding: 12px 25px; min-width: 180px; }
+    .sectionTitle { font-size: 1.8em; }
+    .sectionSubtitle { font-size: 1em; margin-bottom: 35px; }
+    .featuresGrid, .plansGrid, .testimonialsGrid { gap: 25px; }
+    .featureCard, .planCard, .testimonialCard { padding: 25px 20px; }
+    .price { font-size: 2.2em; }
+}
+
+@media (max-width: 480px) {
+    .heroSection { min-height: 65vh; height: 65vh; }
+    .heroTitle { font-size: 1.8em; }
+    .heroSubtitle { font-size: 0.95em; }
+    .heroButtons { gap: 12px; }
+    .heroButton { width: 100%; max-width: 280px; }
+    .sectionTitle { font-size: 1.6em; }
+    .sectionSubtitle { font-size: 0.9em; }
+    .testimonialQuote::before { font-size: 2em; left: -10px; top: -5px; }
+}

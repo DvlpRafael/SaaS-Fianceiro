@@ -1,0 +1,204 @@
+/* frontend/src/components/layout/Navbar.module.css */
+.navbar {
+     background-color: #2b4c7e;  /* Fundo transparente por padrão na home */
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    position: fixed; /* Ou sticky, dependendo do efeito desejado */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    padding: 0 20px;
+}
+
+.navbar.scrolled {
+    background-color: #2b4c7e; /* Azul Escuro Principal - Cor de fundo quando scrollado ou não home */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px; /* Limita a largura do conteúdo do navbar */
+    padding: 0 24px;
+}
+
+.navLogo {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.8rem; /* Tamanho ajustado */
+    font-weight: bold;
+}
+
+.navLogo img {
+    height: 220px;
+    width: 220px; /* Esta altura pode ser pequena dependendo da proporção original do seu logo JPG */
+    margin-right: 10px;
+}
+
+.navLogo span {
+    color: #fff;
+    font-size: 1.8rem; /* Este tamanho para "FiDash" pode ser adequado, mas a imagem pequena o diminui visualmente */
+}
+
+.navbar.scrolled .navLogo img {
+    /* Se precisar de ajuste de filtro quando o navbar tiver fundo */
+}
+
+
+.navMenu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+}
+
+.navLink {
+    color: #dce0e6; /* Cinza Claro/Fundo para links */
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    font-weight: 500;
+}
+
+.navLink:hover {
+    color: #fff; /* Branco no hover */
+    /* transform: translateY(-2px); */
+}
+.navLink.activeLink {
+    color: #fff;
+    border-bottom: 3px solid #567ebb; /* Azul Médio para link ativo */
+}
+
+
+.navbar.scrolled .navLink {
+    color: #dce0e6;
+}
+
+.navbar.scrolled .navLink:hover {
+    color: #fff;
+}
+
+.navbar.scrolled .navLink.activeLink {
+    color: #fff;
+    border-bottom: 3px solid #dce0e6; /* Cinza claro para link ativo com fundo */
+}
+
+.navButtonRegister {
+    background-color: #567ebb; /* Azul Médio */
+    color: #fff !important;
+    padding: 8px 18px !important;
+    border-radius: 20px;
+    margin-left: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navButtonRegister:hover {
+    background-color: #606d80; /* Cinza Azulado/Chumbo */
+    color: #fff !important;
+    transform: translateY(-2px);
+    border-bottom: none;
+}
+
+
+.mobileMenuIcon {
+    display: none;
+    color: #fff; /* Cor do ícone do menu hambúrguer */
+}
+
+@media screen and (max-width: 960px) {
+    .navbar {
+        /* Mesmo quando transparente, o menu mobile precisa de um fundo quando aberto */
+        /* background-color: #2b4c7e !important;  Controlado pela classe .active */
+    }
+    .navbar.transparent:not(.scrolled) .navLogo span {
+        /* color: #1f1f20; /* Logo text color when navbar is transparent and not scrolled */
+    }
+     .navbar.transparent:not(.scrolled) .mobileMenuIcon {
+        /* color: #1f1f20;  Hamburger icon color when navbar is transparent */
+    }
+
+
+    .navMenu {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: calc(100vh - 80px);
+        position: absolute;
+        top: 80px;
+        left: -100%; /* Escondido por padrão */
+        opacity: 1;
+        transition: all 0.4s ease;
+        background-color: #2b4c7e; /* Azul Escuro Principal para o menu mobile */
+    }
+
+    .navMenu.active {
+        left: 0;
+        opacity: 1;
+        transition: all 0.4s ease;
+        z-index: 10;
+    }
+
+    .navLink {
+        text-align: center;
+        padding: 1.5rem;
+        width: 100%;
+        display: table;
+        color: #dce0e6; /* Cor dos links no menu mobile */
+    }
+
+    .navLink:hover {
+        color: #fff;
+        transform: scale(1.05);
+        transition: all 0.2s ease;
+        border-bottom: none;
+    }
+    .navLink.activeLink {
+         color: #fff;
+         border-bottom: none; /* Remover borda no mobile */
+         font-weight: bold;
+    }
+
+    .navButtonRegister {
+        display: block;
+        text-align: center;
+        margin: 1.5rem auto;
+        width: 80%;
+        padding: 12px 0 !important;
+
+    }
+    .navButtonRegister:hover {
+        border-bottom: none;
+    }
+
+
+    .mobileMenuIcon {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-100%, 60%);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+
+    /* Ajuste para o logo quando o menu mobile está aberto e o navbar é transparente */
+    .navbar.transparent:not(.scrolled) .navMenu.active ~ .navLogo span,
+    .navbar.transparent:not(.scrolled) .navMenu.active ~ .mobileMenuIcon {
+        /* color: #fff; Mantém a cor branca se precisar quando o menu mobile transparente abre */
+    }
+}
