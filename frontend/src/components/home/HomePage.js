@@ -74,7 +74,7 @@ function HomePage() {
             name: "Ana Silva",
             title: "CEO, InovaTech Soluções",
             stars: 5,
-            avatar: <FaUserCircle />
+            avatar: <FaUserCircle /> //teste
         },
         {
             quote: "Finalmente encontramos uma plataforma que entende as necessidades de um pequeno negócio. O fluxo de caixa inteligente nos deu uma nova perspectiva.",
